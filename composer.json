@@ -1,0 +1,14 @@
+{
+    "name": "levelup/website",
+    "authors": [
+        {
+            "name": "Kalb Franck",
+            "email": "fkalb@student.42.fr"
+        },
+        {
+            "name": "Astier Raphael",
+            "email": "rapasti@student.42.fr"
+        }
+    ],
+    "require": {}
+}
