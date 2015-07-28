@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/clubs', 'ClubController@index');
+Route::get('/club/create', 'ClubController@create');
+Route::get('/club/{slug}', 'ClubController@show');
