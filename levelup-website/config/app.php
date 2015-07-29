@@ -138,6 +138,12 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         /*
+         * Externals Service Providers
+         */
+
+        'Illuminate\Html\HtmlServiceProvider',
+
+        /*
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
@@ -191,6 +197,8 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
+        'Form'      => 'Illuminate\Html\FormFacade',
+        'HTML'=>    'Illuminate\Html\HtmlFacade'
 
     ],
 

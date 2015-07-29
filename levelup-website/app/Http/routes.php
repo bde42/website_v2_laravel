@@ -15,6 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/clubs', 'ClubController@index');
-Route::get('/club/create', 'ClubController@create');
-Route::get('/club/{slug}', 'ClubController@show');
+Route::get('/clubs', ['as' => 'clubs', 'uses' => 'ClubController@index']);
+Route::get('/club/{slug}', ['as' => 'club-show', 'uses' => 'ClubController@show']);
+
+Route::group(['prefix' => 'dashboard', 'as' => 'admin::'], function()
+{
+    Route::get('club/create', ['as' => 'club-create', 'uses' => 'ClubController@create']);
+    Route::post('club/create', ['as' => 'club-store', 'uses' => 'ClubController@store']);
+});

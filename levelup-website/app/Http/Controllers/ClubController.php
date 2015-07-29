@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Club;
+use App\Http\Requests\ClubFormRequest;
+use \Redirect;
 
 class ClubController extends Controller
 {
@@ -27,10 +29,7 @@ class ClubController extends Controller
      */
     public function create()
     {
-        $club = new Club;
-        $club->name = "Test de club";
-        $club->slug = "coucou";
-        $club->save();
+        return view('clubs.create');
     }
 
     /**
@@ -39,9 +38,18 @@ class ClubController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(ClubFormRequest $request)
     {
-        //
+        $club = new Club;
+        $club->name = $request->get('name');
+        $club->slug = $request->get('slug');
+        $club->description = $request->get('description');
+        $club->photo = $request->get('photo');
+        $club->website = $request->get('website');
+        $club->facebook = $request->get('facebook');
+        $club->slack = $request->get('slack');
+        $club->save();
+        return Redirect::route('admin::club-create')->with('success', 'The club has been created successfully');
     }
 
     /**
@@ -53,7 +61,7 @@ class ClubController extends Controller
     public function show($slug)
     {
         $club = Club::where('slug', $slug)->first();
-        return $club->name;
+        return view('clubs.show', ['club' => $club]);
     }
 
     /**
