@@ -23,6 +23,17 @@ class ClubController extends Controller
     }
 
     /**
+     * Display a listing of the resource in the dashboard.
+     *
+     * @return Response
+     */
+    public function admin()
+    {
+        $clubs = Club::all();
+        return view('clubs.admin', ['clubs' => $clubs]);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return Response
@@ -72,7 +83,8 @@ class ClubController extends Controller
      */
     public function edit($id)
     {
-        //
+        $club = Club::find($id);
+        return view('clubs.update', ['club' => $club]);
     }
 
     /**
@@ -82,9 +94,18 @@ class ClubController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $club = Club::find($request->get('id'));
+        if (!isset($club))
+            dd($club);
+        $club->description = $request->get('description');
+        $club->photo = $request->get('photo');
+        $club->website = $request->get('website');
+        $club->facebook = $request->get('facebook');
+        $club->slack = $request->get('slack');
+        $club->save();
+        return Redirect::route('admin::club-edit', ['id' => $club->id])->with('success', 'The club has been created successfully');
     }
 
     /**
@@ -95,6 +116,7 @@ class ClubController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Club::destroy($id);
+        return Redirect::route('admin::clubs')->with('success', 'The club has been deleted');
     }
 }

@@ -18,7 +18,7 @@
                     {!! HTML::link('/', 'Accueil') !!}
                 </div>
                 <div class="grid-2">
-                    {!! HTML::link('/clubs', 'Clubs') !!}
+                    {!! HTML::link('/dashboard/clubs', 'Clubs') !!}
                 </div>
                 <div class="grid-2">
                     <a href="#events">Événements</a>
@@ -71,5 +71,7 @@
                 </div>
             </div>
         @endif
-        @yield('content')
+        <div id="content">
+            @yield('content')
+        </div>
     </main>

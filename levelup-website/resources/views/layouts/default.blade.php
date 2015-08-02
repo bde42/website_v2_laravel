@@ -46,5 +46,32 @@
         </nav>
     </header>
     <main>
-        @yield('content')
+        @if(Session::has('success'))
+            <div class="alert alert-success">
+                <div class="container">
+                    <div class="grid-10">
+                        <p>{{ Session::get('success') }}</p>
+                    </div>
+                </div>
+            </div>
+        @elseif(Session::has('error') || $errors->all())
+            <div class="alert alert-error">
+                <div class="container">
+                    <div class="grid-10">
+                        @if (Session::has('error'))
+                            <p>{{ Session::get('error') }}</p>
+                        @else
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        @endif
+        <div id="content">
+            @yield('content')
+        </div>
     </main>
