@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Club extends Migration
+class CreateClubsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,16 +15,16 @@ class Club extends Migration
       if (!Schema::hasTable('clubs'))
       {
         Schema::create('clubs', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unsigned();
             $table->string('name');
             $table->string('slug')->unique();
             $table->longText('description');
-            $table->string('photo');
+            $table->string('photo'); //Une gallerie ne serait pas mieux ?
             $table->date('creation');
             $table->string('website');
             $table->string('slack');
             $table->string('facebook');
-            $table->integer('user_id');
+            $table->integer('user_id'); //A enlever et creer l'autorisation 'Owner'
             $table->timestamps();
         });
       }
