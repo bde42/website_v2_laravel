@@ -14,7 +14,7 @@
         {!! Form::text('slug', null, ['required', 'placeholder' => 'mon-club', 'class' => 'form-control']) !!}
         {!! Form::label('Description') !!}
         {!! Form::textarea('description', null, ['required', 'class' => 'form-control']) !!}
-        {!! Form::label('Photo') !!}
+        {!! Form::label('Photo (150x150 conseillé)') !!}
         {!! Form::text('photo', null, null) !!}
         {!! Form::label('Site internet') !!}
         {!! Form::text('website', null, ['placeholder' => 'http://monclub.com', 'class' => 'form-control']) !!}

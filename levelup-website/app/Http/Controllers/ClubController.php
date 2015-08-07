@@ -19,7 +19,8 @@ class ClubController extends Controller
      */
     public function index()
     {
-        return "Clubs index";
+        $clubs = Club::all();
+        return view('clubs.index', ['clubs' => $clubs]);
     }
 
     /**

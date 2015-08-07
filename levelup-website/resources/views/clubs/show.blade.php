@@ -4,9 +4,14 @@
 
 @section('content')
 
+<div class="page-header club-header">
+    <div class="container content-padding">
+        <img src= {{$club->photo}}>
+        <h1>{{$club->name}}</h1>
+    </div>
+</div>
 <div class="container">
     <div class="grid-10">
-        <h1>{{$club->name}}</h1>
         <p>{{$club->description}}</p>
         @if(strlen($club->website) > 0)
             <a href="{!! $club->website !!}" class="button button-little">Site web</a>

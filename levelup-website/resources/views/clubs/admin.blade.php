@@ -4,7 +4,7 @@
 
 @section('content')
 
-<div class="container">
+<div class="container content-padding">
     <div class="grid-7">
         <h1>Liste des clubs</h1>
         <p>Liste complete de tous les clubs enregistrés sur le site. Vous pouvez
