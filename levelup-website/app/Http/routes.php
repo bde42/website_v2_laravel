@@ -17,7 +17,8 @@ Route::get('/home', function () {
 });
 
 // Test route
-Route::get('/test', ['as' => 'test', 'uses' => 'BaseController@test']);
+Route::get('/test/{slug}', ['as' => 'test', 'uses' => 'BaseController@test']);
+//Route::get('/test/{slug}', ['as' => 'test', 'uses' => 'BaseController@test', 'middleware' => 'auth.club:editor']);
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
