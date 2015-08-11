@@ -106,7 +106,7 @@ class ClubController extends Controller
         $club->facebook = $request->get('facebook');
         $club->slack = $request->get('slack');
         $club->save();
-        return Redirect::route('admin::club-edit', ['id' => $club->id])->with('success', 'The club has been created successfully');
+        return Redirect::route('admin::club-edit', ['id' => $club->id])->with('success', 'The club has been updated successfully');
     }
 
     /**

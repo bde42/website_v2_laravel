@@ -33,12 +33,17 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 Route::get('/clubs', ['as' => 'clubs', 'uses' => 'ClubController@index']);
 Route::get('/club/{slug}', ['as' => 'club-show', 'uses' => 'ClubController@show']);
 
+// Admin routes
 Route::group(['prefix' => 'dashboard', 'as' => 'admin::'], function()
 {
+    // Club administration routes
     Route::get('club/create', ['as' => 'club-create', 'uses' => 'ClubController@create']);
     Route::post('club/create', ['as' => 'club-store', 'uses' => 'ClubController@store']);
     Route::get('clubs', ['as' => 'clubs', 'uses' => 'ClubController@admin']);
     Route::get('club/destroy/{id}', ['as' => 'club-destroy', 'uses' => 'ClubController@destroy']);
     Route::get('club/update/{id}', ['as' => 'club-edit', 'uses' => 'ClubController@edit']);
     Route::post('club/update', ['as' => 'club-update', 'uses' => 'ClubController@update']);
+
+    // Settings routes
+    Route::get('settings', ['as' => 'settings', 'uses' => 'SettingsController@edit']);
 });

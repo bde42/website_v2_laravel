@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', 'Les Clubs');
+@section('title', 'Les Clubs')
 
 @section('content')
 

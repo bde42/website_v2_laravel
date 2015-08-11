@@ -1,15 +1,15 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title>Level'UP Dashboard - @yield('title')</title>
+        <title>{{config('app.name')}} Dashboard - @yield('title')</title>
         <meta charset="utf-8">
-        <meta author="Level'UP - bde@student.42.fr">
+        <meta author="App - bde@student.42.fr">
         <meta lang="fr">
         <meta name="viewport" content="width=device-width, initial-scale=0.7, maximum-scale=0.7, user-scalable=0"/>
         <link rel="stylesheet" href="{{ asset('levelup.css') }}" type="text/css">
     </head>
     <header>
-        <nav class="desktop admin">
+        <nav class="desktop">
             <div class="container">
                 <div class="grid-2">
                     <a href= {{ url('/') }}><img id="logo" src= {{ asset('logo.png') }}></a>
@@ -24,11 +24,11 @@
                     <a href="#events">Événements</a>
                 </div>
                 <div class="grid-2">
-                    <a href="#agenda" onclick="scrollTo('agenda')">Agenda</a>
+                    {!! HTML::link('/dashboard/settings', 'Réglages') !!}
                 </div>
             </div>
         </nav>
-        <nav class="mobile admin">
+        <nav class="mobile">
             <div class="container">
                 <div class="grid-1">
                     <img id="logo" src= {{ asset('logo.png') }}>
