@@ -46,4 +46,5 @@ Route::group(['prefix' => 'dashboard', 'as' => 'admin::'], function()
 
     // Settings routes
     Route::get('settings', ['as' => 'settings', 'uses' => 'SettingsController@edit']);
+    Route::post('settings', ['as' => 'settings-update', 'uses' => 'SettingsController@update']);
 });

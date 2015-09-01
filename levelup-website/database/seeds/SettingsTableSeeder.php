@@ -14,6 +14,8 @@ class SettingsTableSeeder extends Seeder
     {
         DB::table('settings')->delete();
 
-        Setting::create(['key' => 'about', 'name' => 'A propos du BDE', 'value' => "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"]);
+        Setting::create(['key' => 'about', 'name' => 'A propos du BDE', 'value' => "string|Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"]);
+        Setting::create(['key' => 'maintenance', 'name' => 'Maintenance', 'value' => "boolean|false"]);
+        Setting::create(['key' => 'pagination', 'name' => 'Clubs par page', 'value' => "integer|15"]);
     }
 }

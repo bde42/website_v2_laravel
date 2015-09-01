@@ -98,15 +98,17 @@ class ClubController extends Controller
     public function update(Request $request)
     {
         $club = Club::find($request->get('id'));
-        if (!isset($club))
-            dd($club);
-        $club->description = $request->get('description');
-        $club->photo = $request->get('photo');
-        $club->website = $request->get('website');
-        $club->facebook = $request->get('facebook');
-        $club->slack = $request->get('slack');
-        $club->save();
-        return Redirect::route('admin::club-edit', ['id' => $club->id])->with('success', 'The club has been updated successfully');
+        if (isset($club))
+        {
+            $club->description = $request->get('description');
+            $club->photo = $request->get('photo');
+            $club->website = $request->get('website');
+            $club->facebook = $request->get('facebook');
+            $club->slack = $request->get('slack');
+            $club->save();
+            return Redirect::route('admin::club-edit', ['id' => $club->id])->with('success', 'The club has been updated successfully');
+        }
+        return Redirect::route('admin::club-edit', ['id' => $club->id])->with('error', "The club you tried to edit is not registered in the database");
     }
 
     /**
