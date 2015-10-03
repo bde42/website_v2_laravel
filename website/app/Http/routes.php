@@ -37,6 +37,7 @@ Route::get('/club/{slug}', ['as' => 'club-show', 'uses' => 'ClubController@show'
 Route::group(['prefix' => 'dashboard', 'as' => 'admin::'], function()
 {
     // Club administration routes
+    // A remplacer par une ressource : Route::resource('clubs', 'ClubsController');
     Route::get('club/create', ['as' => 'club-create', 'uses' => 'ClubController@create']);
     Route::post('club/create', ['as' => 'club-store', 'uses' => 'ClubController@store']);
     Route::get('clubs', ['as' => 'clubs', 'uses' => 'ClubController@admin']);

@@ -24,7 +24,6 @@ class CreateClubsTable extends Migration
             $table->string('website');
             $table->string('slack');
             $table->string('facebook');
-            $table->integer('user_id'); //A enlever et creer l'autorisation 'Owner'
             $table->timestamps();
         });
       }

@@ -13,7 +13,7 @@ class ClubTableSeeder extends Seeder
     public function run()
     {
 		DB::table('clubs')->delete();
-
+		
 		Club::create(array(
 		'name' => "Level'UP",
 		'slug' => 'level-up',
