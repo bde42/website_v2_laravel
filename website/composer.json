@@ -3,12 +3,13 @@
     "description": "The Laravel Framework.",
     "keywords": ["framework", "laravel"],
     "license": "MIT",
+    "minimum-stability": "dev", 
     "type": "project",
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
         "illuminate/html": "5.*",
-        "league/oauth2-client": "^1.0"
+        "bde42/oauth2-marvin": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
