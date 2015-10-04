@@ -15,6 +15,7 @@ class ClubController extends Controller
     
     public function __construct()
 	{
+        $this->middleware('auth.club:administrator,restrict', ['only' => ['admin', 'store', 'create', 'destroy']]);
 		$this->middleware('auth.club:administrator', ['only' => ['edit', 'update']]);
 	}
     
