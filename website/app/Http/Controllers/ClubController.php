@@ -12,6 +12,13 @@ use \Redirect;
 
 class ClubController extends Controller
 {
+    
+    public function __construct()
+	{
+		$this->middleware('auth.club:administrator', ['only' => ['edit', 'update']]);
+	}
+    
+    
     /**
      * Display a listing of the resource.
      *
@@ -84,7 +91,8 @@ class ClubController extends Controller
      */
     public function edit($id)
     {
-        $club = Club::find($id);
+        //$club = Club::find($id);
+        $club = Club::where('slug', $id)->first();
         return view('clubs.update', ['club' => $club]);
     }
 
@@ -97,7 +105,8 @@ class ClubController extends Controller
      */
     public function update(Request $request)
     {
-        $club = Club::find($request->get('id'));
+        //$club = Club::find($request->get('id'));
+        $club = Club::where('slug', $request->get('id'))->first();
         if (isset($club))
         {
             $club->description = $request->get('description');
@@ -106,9 +115,9 @@ class ClubController extends Controller
             $club->facebook = $request->get('facebook');
             $club->slack = $request->get('slack');
             $club->save();
-            return Redirect::route('admin::club-edit', ['id' => $club->id])->with('success', 'The club has been updated successfully');
+            return Redirect::route('admin::club-edit', ['id' => $club->slug])->with('success', 'The club has been updated successfully');
         }
-        return Redirect::route('admin::club-edit', ['id' => $club->id])->with('error', "The club you tried to edit is not registered in the database");
+        return Redirect::route('admin::club-edit', ['id' => $club->slug])->with('error', "The club you tried to edit is not registered in the database");
     }
 
     /**
@@ -119,7 +128,9 @@ class ClubController extends Controller
      */
     public function destroy($id)
     {
-        Club::destroy($id);
+        //Club::destroy($id);
+        $club = Club::where('slug', $slug)->first();
+        Club::destroy($club->id);
         return Redirect::route('admin::clubs')->with('success', 'The club has been deleted');
     }
 }

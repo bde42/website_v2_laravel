@@ -27,7 +27,7 @@ class RoleTableSeeder extends Seeder
 		
 		$admin = DB::table('roles')->where('name', 'administrator')->value('id');
 		$levelup = DB::table('clubs')->where('slug', 'level-up')->value('id');
-		print_r($levelup);
+
 		if (!empty($admin)) {
 			DB::table('website_roles')->insert(
 				array(
@@ -38,6 +38,7 @@ class RoleTableSeeder extends Seeder
 			if (!empty($levelup)) {
 				DB::table('clubs_roles')->insert(
 					array(
+						array('nickname' => 'fkalb', 'club_id' => $levelup, 'role_id' => $admin),
 						array('nickname' => 'qudevide', 'club_id' => $levelup, 'role_id' => $admin),
 						array('nickname' => 'hkhelifa', 'club_id' => $levelup, 'role_id' => $admin),
 					)
