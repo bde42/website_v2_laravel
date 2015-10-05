@@ -25,7 +25,23 @@
     </div>
 </div>
 <div class="container">
-    <div class="grid-10">
+    <div class="grid-7">
+        <div class="container">
+        @forelse($posts as $post)
+            <div class="grid-10 club-post">
+                <h4>{{$post->title}}</h4>
+                <p>{{$post->content}}</p>
+                <p><b>Edité par: <i>{{$post->author}}</i></b></p>
+            </div>
+        @empty
+            <div class="grid-10">
+                <h3>Aucun post édité par ce club</h3>
+            </div>
+        @endforelse
+        </div>
+    </div>
+    <div class="grid-3">
+        <h4>Description du club</h4>
         <p>{{$club->description}}</p>
     </div>
 </div>

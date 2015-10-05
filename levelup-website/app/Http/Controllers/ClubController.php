@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Models\ClubPost;
 use App\Models\Club;
 use App\Http\Requests\ClubFormRequest;
 use \Redirect;
@@ -73,7 +74,8 @@ class ClubController extends Controller
     public function show($slug)
     {
         $club = Club::where('slug', $slug)->first();
-        return view('clubs.show', ['club' => $club]);
+        $posts = ClubPost::where('club_id', $club->id)->get();
+        return view('clubs.show', ['club' => $club, 'posts' => $posts]);
     }
 
     /**
