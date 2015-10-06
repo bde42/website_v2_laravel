@@ -13,14 +13,14 @@ use \Redirect;
 
 class ClubController extends Controller
 {
-    
+
     public function __construct()
 	{
         $this->middleware('auth.club:administrator,restrict', ['only' => ['admin', 'store', 'create', 'destroy']]);
 		$this->middleware('auth.club:administrator', ['only' => ['edit', 'update']]);
 	}
-    
-    
+
+
     /**
      * Display a listing of the resource.
      *
@@ -82,8 +82,7 @@ class ClubController extends Controller
     public function show($slug)
     {
         $club = $club = getClub($slug, 'clubs');
-        $posts = ClubPost::where('club_id', $club->id)->get();
-        return view('clubs.show', ['club' => $club, 'posts' => $posts]);
+        return view('clubs.show', ['club' => $club, 'posts' => $club->posts]);
     }
 
     /**
@@ -127,6 +126,7 @@ class ClubController extends Controller
     public function destroy($id)
     {
         $club = getClub($id, 'admin::clubs');
+        ClubPost::where('club_id', $club->id)->delete();
         Club::destroy($club->id);
         return Redirect::route('admin::clubs')->with('success', 'The club has been deleted');
     }
