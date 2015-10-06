@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Models\Role;
 use App\Models\ClubRole;
 
 use \Redirect;
@@ -28,12 +29,14 @@ class ClubRoleController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return Redirect
+     * @param  $club-slug or $club-id
      */
     public function create($slug)
     {
+        $roles = Role::lists('name', 'id');
         $club = getClub($slug, 'admin::clubs');
-		return view('clubs.roles.create', ['club' => $club]);
+		return view('clubs.roles.create', ['club' => $club, 'roles' => $roles]);
     }
 
     /**
@@ -41,16 +44,17 @@ class ClubRoleController extends Controller
      *
      * @param  Request  $request
      * @param  $club-slug or $club-id
-     * @return Response
+     * @return Redirect
      */
     public function store(Request $request, $slug)
     {
         $club = getClub($slug, 'admin::clubs');
         $perm = new ClubRole;
+        $perm->timestamps = false;
         $perm->club_id = $club->id;
-        $club->role = $request->get('role_id');
+        $perm->role_id = $request->get('role_id');
         $perm->nickname = $request->get('nickname');
-        $club->save();
+        $perm->save();
         return Redirect::route('club-roles', ['club' => $club])->with('success', "Permission '{$perm->role->name}' are successfully added to {$perm->nickname}!");
         
     }
