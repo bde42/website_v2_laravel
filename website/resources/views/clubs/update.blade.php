@@ -4,7 +4,6 @@
 
 @section('content')
 
-<!-- Ce serait pas plus cool de mettre le form ici au lieu de rediriger ?-->
 {!! HTML::linkRoute('club-roles', 'Permissions', array($club->slug), array('class' => 'button button-little')) !!}
 
 <div class="container center">

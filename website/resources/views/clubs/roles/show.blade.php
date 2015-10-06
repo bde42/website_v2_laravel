@@ -24,6 +24,11 @@
         </div>
     </div>
 </div>
+    
+<!-- Ce serait pas plus cool de mettre le form ici au lieu de rediriger ?-->
+{!! HTML::linkRoute('club-role-create', 'Creer', array($club->slug), array('class' => 'button button-little')) !!}
+
+    
 <div class="container">
     <div class="grid-10">
         <ul class="table">
