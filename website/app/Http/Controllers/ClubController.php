@@ -81,7 +81,7 @@ class ClubController extends Controller
      */
     public function show($slug)
     {
-        $club = $club = $this->getClub($slug, 'clubs');
+        $club = $club = getClub($slug, 'clubs');
         $posts = ClubPost::where('club_id', $club->id)->get();
         return view('clubs.show', ['club' => $club, 'posts' => $posts]);
     }
@@ -94,7 +94,7 @@ class ClubController extends Controller
      */
     public function edit($id)
     {
-        $club = $this->getClub($id, 'admin::clubs');
+        $club = getClub($id, 'admin::clubs');
 		return view('clubs.update', ['club' => $club]);
     }
 
@@ -107,7 +107,7 @@ class ClubController extends Controller
      */
     public function update(Request $request)
     {
-        $club = $this->getClub($request->get('id'), 'admin::clubs');
+        $club = getClub($request->get('id'), 'admin::clubs');
 
 		$club->description = $request->get('description');
 		$club->photo = $request->get('photo');
@@ -126,28 +126,9 @@ class ClubController extends Controller
      */
     public function destroy($id)
     {
-        $club = $this->getClub($id, 'admin::clubs');
+        $club = getClub($id, 'admin::clubs');
         Club::destroy($club->id);
         return Redirect::route('admin::clubs')->with('success', 'The club has been deleted');
     }
-	
-	/**
-     * Get club.
-     *
-     * @param  Request  $request
-     * @param  int  $id or string $slug
-     * @param  int  $redirect_to if an error is occured
-     * @return Club
-     */
-	private function getClub($id, $redirect_to = 'home')
-	{
-		$club = Club::where('slug', $id)->first();
-		if (!isset($club))
-		{
-			$club = Club::where('id', $id)->first();
-			if (!isset($club))
-				return Redirect::route($redirect_to)->with('error', "The club is not registered in the database");
-		}
-		return $club;
-	}
+
 }

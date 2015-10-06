@@ -6,4 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 class Club extends Model
 {
     protected $fillable = ['name', 'slug', 'description', 'creation', 'website', 'slack', 'facebook'];
+    
+    public function perms()
+    {
+        return $this->hasMany(ClubRole::class);
+    }
+
 }
