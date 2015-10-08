@@ -16,8 +16,8 @@ class DatabaseSeeder extends Seeder
 		
         $this->call('UserTableSeeder');
 		$this->call('ClubTableSeeder');
-        $this->call('ClubPostsTableSeeder');
 		$this->call('RoleTableSeeder');
+		$this->call('ClubPostsTableSeeder');
         $this->call('SettingsTableSeeder');
 
         Model::reguard();

@@ -26,7 +26,8 @@ class RoleTableSeeder extends Seeder
 		);
 		
 		$admin = DB::table('roles')->where('name', 'administrator')->value('id');
-		$levelup = DB::table('clubs')->where('slug', 'level-up')->value('id');
+		$bde_id = DB::table('clubs')->where('slug', 'bde')->value('id');
+		$arcade42_id = DB::table('clubs')->where('slug', 'arcade-42')->value('id');
 
 		if (!empty($admin)) {
 			DB::table('website_roles')->insert(
@@ -35,12 +36,12 @@ class RoleTableSeeder extends Seeder
 					array('nickname' => 'rapasti', 'role_id' => $admin),
 				)
 			);
-			if (!empty($levelup)) {
+			if (!empty($bde_id)) {
 				DB::table('clubs_roles')->insert(
 					array(
-						array('nickname' => 'fkalb', 'club_id' => $levelup, 'role_id' => $admin),
-						array('nickname' => 'qudevide', 'club_id' => $levelup, 'role_id' => $admin),
-						array('nickname' => 'hkhelifa', 'club_id' => $levelup, 'role_id' => $admin),
+						array('nickname' => 'qudevide', 'club_id' => $bde_id, 'role_id' => $admin),
+						array('nickname' => 'hkhelifa', 'club_id' => $bde_id, 'role_id' => $admin),
+						array('nickname' => 'carfoui', 'club_id' => $arcade42_id, 'role_id' => $admin),
 					)
 				);
 			}

@@ -12,6 +12,7 @@ class BaseController extends Controller
 
 	protected function home()
 	{
+		/*
 		$about = Setting::where('key', 'about')->first();
 		$bigevent["main-photo"] = Setting::where('key', 'be-main-photo')->first()->value;
 		$bigevent["bg-photo"] = Setting::where('key', 'be-bg-photo')->first()->value;
@@ -26,5 +27,8 @@ class BaseController extends Controller
 			'posts' => $posts,
 			'bigevent' => $bigevent,
 			'agenda' => $agenda]);
+	*/
+		$posts = ClubPost::all();
+		return view('home')->with(['posts' => $posts]);
 	}
 }

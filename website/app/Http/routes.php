@@ -21,14 +21,14 @@ Route::get('/test/{slug}', ['as' => 'test', 'uses' => 'BaseController@test']);
 //Route::get('/test/{slug}', ['as' => 'test', 'uses' => 'BaseController@test', 'middleware' => 'auth.club:editor']);
 
 // Authentication routes...
-Route::get('auth/login', 'Auth\AuthController@login');
-Route::get('auth/getlogin', 'Auth\AuthController@getLogin');
-Route::post('auth/getlogin', 'Auth\AuthController@postLogin');
-Route::get('auth/logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@getLogout']);
+Route::get('auth/login', ['as' => 'login', 'uses' => 'Auth\AuthController@login']);
+Route::get('auth/logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@logout']);
+Route::get('auth/me', ['as' => 'user-me', 'uses' => 'Auth\AuthController@me']);
+//Route::post('auth/getlogin', 'Auth\AuthController@postLogin');
 
 // Registration routes...
-Route::get('auth/register', 'Auth\AuthController@getRegister');
-Route::post('auth/register', 'Auth\AuthController@postRegister');
+//Route::get('auth/register', 'Auth\AuthController@getRegister');
+//Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 // Clubs routes
 Route::get('/clubs', ['as' => 'clubs', 'uses' => 'ClubController@index']);

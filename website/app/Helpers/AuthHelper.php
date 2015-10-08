@@ -1,13 +1,13 @@
 <?php
 
-    function login($user = null)
+    function setLogin($user = null)
     {
         session(['current_user' => $user]);
     }
 
-    function logout()
+    function setLogout()
     {
-        session(['current_user' => null]);
+		session()->forget('current_user');
     }
     
     function current_user()
@@ -15,12 +15,13 @@
         return session('current_user');
     }
     
-    function hasRole($role, $club_slug = null)
+    function hasPerm($role, $club_slug = null)
     {
         //A REFACTORISER
-        if (current_user() == null || !isset(current_user()['login']))
-			return false;
+        if (current_user() == null)
+			return Redirect::route('login');
 
+		$results = null;
         if (!empty($club_slug))
         {
 			$results = DB::select(DB::raw("SELECT c.slug FROM clubs AS c, clubs_roles AS cr LEFT JOIN roles AS r ON r.id = cr.role_id WHERE r.name = :role AND c.id = cr.club_id AND c.slug = :club AND cr.nickname = :nickname"), array(
@@ -35,7 +36,7 @@
                 'nickname' => current_user()['login'],
             ));
             if (empty($results))
-                return false;
+                return Redirect::route('clubs')->with('error', 'You are not allowed to access this page!');
         }
         return true;
     }

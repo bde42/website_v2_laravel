@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use DB;
+use \Redirect;
 
 class ClubAuthorization
 {
@@ -19,10 +20,12 @@ class ClubAuthorization
     public function handle($request, Closure $next, $role, $type = null)
     {
 		$slug = $type != 'restrict' ? (isset($request->slug) ? $request->slug : $request->id) : null;
-
-		if (hasRole($role, $slug))
+		
+		$permission = hasPerm($role, $slug);
+		
+		if ($permission === true)
 			return $next($request);
-
-        return "403";
+		
+		return $permission;
     }
 }

@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 
 use App\Helpers\LoginHelper\Helper;
 
+use \Redirect;
+
 class AuthController extends Controller
 {
     /*
@@ -34,7 +36,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest', ['except' => 'getLogout']);
+        $this->middleware('guest', ['except' => 'logout']);
     }
 
     /**
@@ -71,9 +73,11 @@ class AuthController extends Controller
             // Check given state against previously stored one to mitigate CSRF attack
             } else if (empty($_GET['state']) || $_GET['state'] !== session('oauth2state'))
             {
-                session(['oauth2state' => null]);
+                session()->forget('oauth2state');
                 exit('Invalid state');
             }
+            
+            session()->forget('oauth2state');
             
             // Try to get an access token (using the authorization code grant)
             $token = $provider->getAccessToken('authorization_code', [
@@ -83,28 +87,25 @@ class AuthController extends Controller
             // Try to get an access token (using the authorization code grant)
             try {
                 $user = $provider->getResourceOwner($token);
+                setLogin($user->getUserInfos()); //Basic informations (uid, email, name and login)
+                //$user->toArray() //Get all user informations whose you have the access authorization
             } catch (Exception $e) {
                 exit('Oh dear...');
             }
-
-            login($user->getUserInfos()); //Basic informations (uid, email, name and login)
-            //$user->toArray() //Get all user informations whose you have the access authorization
-            
-            print_r ("NEW USER : ".json_encode(current_user()));
-            return redirect('/clubs');
-        } else {
-            print_r ("REGISTERED USER : ".json_encode(current_user()));
-            logout();
         }
+        //return redirect::route('clubs');
+        return redirect::route('clubs');
+    }
+
+    public function logout() {
+        setLogout();
+        return redirect::route('clubs');
+        //return redirect::route('home');
     }
     
-    public function getLogin() {
+    public function me() {
         print_r(current_user());
         return;
-    }
-    
-    public function getLogout() {
-        logout();
     }
     
     
@@ -116,10 +117,12 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
+        /*
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+        */
     }
 }
