@@ -7,6 +7,7 @@
         <meta lang="fr">
         <meta name="viewport" content="width=device-width, initial-scale=0.7, maximum-scale=0.7, user-scalable=0"/>
         <link rel="stylesheet" href="{{ asset('levelup.css') }}" type="text/css">
+        @yield('head')
     </head>
     <header>
         <nav class="desktop">
@@ -75,3 +76,4 @@
             @yield('content')
         </div>
     </main>
+    {!! HTML::script('js/confirm.js') !!}

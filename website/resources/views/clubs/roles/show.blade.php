@@ -52,7 +52,7 @@
                         <p>{{$perm->role->name}}</p>
                     </div>
                     <div class="col col-25">
-                        <a href= {{route('club-role-destroy', ['slug' => $club->slug, 'role' => $perm->id])}} class="button-red button-little">delete</a>
+                        <a href= {{route('club-role-destroy', ['slug' => $club->slug, 'role' => $perm->id])}} class="button-red button-little button-confirm">delete</a>
                     </div>
                 </li>
             @empty

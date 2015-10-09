@@ -26,7 +26,7 @@
                     <div class="col col-35">
                         <a href= {{action('ClubController@show', ['slug' => $club->slug])}} class="button-secondary button-little">show</a>
                         <a href= {{route('admin::club-edit', ['id' => $club->id])}} class="button button-little">update</a>
-                        <a href= {{route('admin::club-destroy', ['id' => $club->id])}} class="button-red button-little">delete</a>
+                        <a href= {{route('admin::club-destroy', ['id' => $club->id])}} class="button-red button-little button-confirm">delete</a>
                     </div>
                 </li>
             @empty

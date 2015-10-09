@@ -12,6 +12,20 @@ class BaseController extends Controller
 
 	protected function home()
 	{
+		$bigevent = [];
+		$settings = Setting::all();
+		
+		foreach ($settings as $setting) {
+			
+			$arr = ['name' => $setting['name'], 'value' => $setting['value']];
+
+			if (substr($setting['key'], 0, 3) === "be-")
+				$bigevent[$setting['key']] = $arr;
+			else
+				$other[$setting['key']] = $arr;
+		}
+		
+		//BEAUCOUPS D'APPELS A LA BDD, CERTES EN HAUT C'EST PAS FORCEMENT MIEUX, de tout facon faudra faire un systeme de "event mis en avant" en faisant les events.
 		/*
 		$about = Setting::where('key', 'about')->first();
 		$bigevent["main-photo"] = Setting::where('key', 'be-main-photo')->first()->value;
@@ -29,6 +43,7 @@ class BaseController extends Controller
 			'agenda' => $agenda]);
 	*/
 		$posts = ClubPost::all();
-		return view('home')->with(['posts' => $posts]);
+		return view('home')->with(['posts' => $posts, 'bigevent' => $bigevent,
+			'other' => $other]);
 	}
 }

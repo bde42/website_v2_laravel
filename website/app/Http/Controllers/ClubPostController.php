@@ -10,6 +10,11 @@ use App\Http\Controllers\Controller;
 class ClubPostController extends Controller
 {
 
+    public function __construct()
+	{
+        $this->middleware('auth.club:community_manager', ['except' => ['index', 'show']]);
+	}
+
     /**
      * Show the form for creating a new resource.
      *

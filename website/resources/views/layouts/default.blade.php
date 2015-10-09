@@ -7,6 +7,8 @@
     <meta lang="fr">
     <meta name="viewport" content="width=device-width, initial-scale=0.7, maximum-scale=0.7, user-scalable=0"/>
     <link rel="stylesheet" href="{{ asset('levelup.css') }}" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    @yield('head')
 </head>
 <body>
     <div class="wrapper">
@@ -87,3 +89,4 @@
         </div>
     </footer>
 </body>
+{!! HTML::script('js/confirm.js') !!}

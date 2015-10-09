@@ -41,7 +41,7 @@ class RoleTableSeeder extends Seeder
 					array(
 						array('nickname' => 'qudevide', 'club_id' => $bde_id, 'role_id' => $admin),
 						array('nickname' => 'hkhelifa', 'club_id' => $bde_id, 'role_id' => $admin),
-						array('nickname' => 'carfoui', 'club_id' => $arcade42_id, 'role_id' => $admin),
+						array('nickname' => 'carfaoui', 'club_id' => $arcade42_id, 'role_id' => $admin),
 					)
 				);
 			}

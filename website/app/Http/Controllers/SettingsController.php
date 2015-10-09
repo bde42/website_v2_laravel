@@ -10,6 +10,12 @@ use \Redirect;
 
 class SettingsController extends Controller
 {
+    
+    public function __construct()
+	{
+        $this->middleware('auth.club:administrator,restrict');
+	}
+    
     /**
      * Display a listing of the settings in the dashboard.
      *

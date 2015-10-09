@@ -4,6 +4,23 @@
 
 @section('content')
 
+
+<div id="event">
+    <div id="branding-bg" style="background-image: url({!!$bigevent['be-bg-photo']['value']!!});">
+        <div id="branding">
+            <div class="container center">
+                <div class="grid-10"><img src= {{$bigevent["be-main-photo"]['value']}} class="round-image"></div>
+                <div class="grid-8">
+                    <p id="branding-label" class="label">{{$bigevent["be-label"]['value']}}</p>
+                    <h1 class="white">{{$bigevent["be-title"]['value']}}</h1>
+                    <p>{{$bigevent["be-description"]['value']}}</p>
+                    <p><a target="new" href= {{$bigevent["be-link"]['value']}} class="button">En savoir plus</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="container">
     <div class="grid-7">
         <h3>Dernières actualités</h3>
@@ -21,6 +38,14 @@
                 </div>
             @endforelse
         </div>
+    </div>
+    <div class="grid-3">
+        <h3>Agenda</h3>
+        @if(strlen($other['agenda']['value']) > 0)
+            <p>{!!$other['agenda']['value']!!}</p>
+        @else
+            <p>Rien de prévu pour le moment</p>
+        @endif
     </div>
 </div>
 
