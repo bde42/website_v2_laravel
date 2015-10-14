@@ -61,7 +61,7 @@ class AuthController extends Controller
             $provider = new \BDE42\OAuth2\Client\Provider\Marvin([
                 'clientId'          => env('42_ID'),
                 'clientSecret'      => env('42_SECRET'),
-                'redirectUri'       => 'http://localhost:8000/auth/login'
+                'redirectUri'       => env('42_REDIRECT', 'http://localhost:8000/auth/login'),
             ]);
             
             // If we don't have an authorization code then get one
